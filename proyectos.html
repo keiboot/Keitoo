@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyectos | Mi Portafolio</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -21,42 +21,104 @@
     </header>
 
     <main class="container">
-        <h2 class="titulo-seccion">Trabajos <span>Recientes</span></h2>
         
-        <div class="portfolio-grid">
-            <div class="video-card">
-                <div class="video-thumbnail">
-                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=600&auto=format&fit=crop" alt="Proyecto">
-                </div>
-                <div class="video-info">
-                    <h3>Campaña Comercial Automotriz</h3>
-                    <p>Montaje dinámico, efectos de sonido inmersivos y etalonaje cinematográfico.</p>
-                    <span class="tag">Color Grading</span>
-                </div>
-            </div>
+        <h2 class="titulo-seccion">Experiencia <span>Comprobada</span></h2>
 
-            <div class="video-card">
-                <div class="video-thumbnail">
-                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=600&auto=format&fit=crop" alt="Proyecto">
+        <!-- CARRUSEL DE TESTIMONIOS -->
+        <div class="carousel-wrapper">
+            <!-- Se duplican los testimonios para que el giro infinito sea fluido -->
+            <div class="carousel-track">
+                <!-- Testimonio 1 -->
+                <div class="testimonio-card">
+                    <div class="perfil-testimonio">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" alt="Foto">
+                        <div class="perfil-info"><h4>Fernanda</h4><span>Agencia Creativa La Paz</span></div>
+                    </div>
+                    <p class="comentario">"La sincronización rítmica que logró en nuestro último proyecto superó las expectativas. Tiempos de entrega impecables."</p>
                 </div>
-                <div class="video-info">
-                    <h3>Videoclip Musical - "Neon Lights"</h3>
-                    <p>Sincronización rítmica perfecta y efectos visuales de estilo cyberpunk.</p>
-                    <span class="tag">VFX & Edición</span>
+                <!-- Testimonio 2 -->
+                <div class="testimonio-card">
+                    <div class="perfil-testimonio">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" alt="Foto">
+                        <div class="perfil-info"><h4>Alanis</h4><span>Challenger Performance</span></div>
+                    </div>
+                    <p class="comentario">"Entendió exactamente la agresividad visual que necesitábamos para los clips de los autos. Su etalonaje es de otro nivel."</p>
                 </div>
-            </div>
+                <!-- Testimonio 3 -->
+                <div class="testimonio-card">
+                    <div class="perfil-testimonio">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop" alt="Foto">
+                        <div class="perfil-info"><h4>Carlos</h4><span>Taycan Motors</span></div>
+                    </div>
+                    <p class="comentario">"Un flujo de trabajo muy ordenado. Los renderizados finales en 4K conservaron una calidad estética premium."</p>
+                </div>
+                <!-- Testimonio 4 -->
+                <div class="testimonio-card">
+                    <div class="perfil-testimonio">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" alt="Foto">
+                        <div class="perfil-info"><h4>Valeria</h4><span>Silvia S14 Club</span></div>
+                    </div>
+                    <p class="comentario">"Los efectos de sonido y cortes rápidos le dieron vida al evento de drift. Totalmente recomendado."</p>
+                </div>
+                <!-- Testimonio 5 -->
+                <div class="testimonio-card">
+                    <div class="perfil-testimonio">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" alt="Foto">
+                        <div class="perfil-info"><h4>Mateo</h4><span>Santa Cruz Tech</span></div>
+                    </div>
+                    <p class="comentario">"La edición vertical para nuestras redes multiplicó nuestro engagement. Sabe cómo retener a la audiencia."</p>
+                </div>
 
-            <div class="video-card">
-                <div class="video-thumbnail">
-                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=600&auto=format&fit=crop" alt="Proyecto">
+                <!-- DUPLICADOS (Necesarios para el loop infinito del CSS) -->
+                <div class="testimonio-card">
+                    <div class="perfil-testimonio">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" alt="Foto">
+                        <div class="perfil-info"><h4>Fernanda</h4><span>Agencia Creativa La Paz</span></div>
+                    </div>
+                    <p class="comentario">"La sincronización rítmica que logró en nuestro último proyecto superó las expectativas. Tiempos de entrega impecables."</p>
                 </div>
-                <div class="video-info">
-                    <h3>Documental Corto: Raíces</h3>
-                    <p>Estructura narrativa fluida apoyada en entrevistas y material de archivo.</p>
-                    <span class="tag">Narrativa</span>
+                <div class="testimonio-card">
+                    <div class="perfil-testimonio">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" alt="Foto">
+                        <div class="perfil-info"><h4>Alanis</h4><span>Challenger Performance</span></div>
+                    </div>
+                    <p class="comentario">"Entendió exactamente la agresividad visual que necesitábamos para los clips de los autos. Su etalonaje es de otro nivel."</p>
+                </div>
+                <div class="testimonio-card">
+                    <div class="perfil-testimonio">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop" alt="Foto">
+                        <div class="perfil-info"><h4>Carlos</h4><span>Taycan Motors</span></div>
+                    </div>
+                    <p class="comentario">"Un flujo de trabajo muy ordenado. Los renderizados finales en 4K conservaron una calidad estética premium."</p>
+                </div>
+                <div class="testimonio-card">
+                    <div class="perfil-testimonio">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" alt="Foto">
+                        <div class="perfil-info"><h4>Valeria</h4><span>Silvia S14 Club</span></div>
+                    </div>
+                    <p class="comentario">"Los efectos de sonido y cortes rápidos le dieron vida al evento de drift. Totalmente recomendado."</p>
+                </div>
+                <div class="testimonio-card">
+                    <div class="perfil-testimonio">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" alt="Foto">
+                        <div class="perfil-info"><h4>Mateo</h4><span>Santa Cruz Tech</span></div>
+                    </div>
+                    <p class="comentario">"La edición vertical para nuestras redes multiplicó nuestro engagement. Sabe cómo retener a la audiencia."</p>
                 </div>
             </div>
         </div>
+
+        <!-- FORMATO VERTICAL (2 Columnas - Shorts / TikToks) -->
+        <h2 class="titulo-seccion" style="font-size: 2rem;">Contenido <span>Vertical</span></h2>
+        <div class="shorts-grid">
+            <div class="short-card">
+                <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=600&auto=format&fit=crop" alt="TikTok 1">
+            </div>
+            <div class="short-card">
+                <img src="https://images.unsplash.com/photo-1586899028174-e7098604235b?q=80&w=600&auto=format&fit=crop" alt="Short 2">
+            </div>
+        </div>
+
     </main>
 
 </body>

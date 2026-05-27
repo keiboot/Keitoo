@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor Audiovisual | Portafolio</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div class="nav-container">
-            <div class="logo">KIETOO<span>Edit</span></div>
+            <div class="logo">Visual<span>Edit</span></div>
             <nav>
                 <a href="index.html" class="active">Inicio</a>
                 <a href="proyectos.html">Proyectos</a>
@@ -20,8 +20,15 @@
         </div>
     </header>
 
-    <main class="container">
+    <main>
+        <!-- HERO CON VIDEO DE FONDO -->
         <section class="hero-section">
+            <!-- Video de fondo (Reemplaza el src con tu video .mp4) -->
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="https://cdn.pixabay.com/video/2020/05/25/40149-425123984_large.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+
             <h1>Ritmo, Color y <br><span style="color: var(--color-neon); text-shadow: 0 0 15px var(--brillo-neon);">Narrativa Visual</span></h1>
             <p>Editor de video profesional especializado en comerciales de alto impacto, videoclips musicales y corrección estelar de color.</p>
             <a href="proyectos.html" class="btn-glow">Explorar Proyectos</a>

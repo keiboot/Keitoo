@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | Mi Portafolio</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -21,26 +21,68 @@
     </header>
 
     <main class="container">
-        <h2 class="titulo-seccion">Inicia un <span>Proyecto</span></h2>
+        <h2 class="titulo-seccion">Conecta <span>Conmigo</span></h2>
         
-        <div class="contact-card">
-            <form action="#" method="POST">
-                <div class="form-group">
-                    <label for="nombre">Nombre Completo</label>
-                    <input type="text" id="nombre" class="form-control" placeholder="Ej. Juan Pérez" required>
+        <div class="contacto-wrapper">
+            
+            <!-- Lado Izquierdo: Redes Sociales -->
+            <div class="contacto-info">
+                <h3>Otras formas de comunicarte:</h3>
+                <p>Si prefieres un trato más directo, no dudes en escribirme por cualquiera de estas plataformas.</p>
+                
+                <div class="redes-lista">
+                    <!-- Instagram -->
+                    <a href="#" class="red-item">
+                        <div class="red-icon">📸</div>
+                        <div class="red-texto">
+                            <strong>Instagram</strong>
+                            <span>Mira mi día a día y detrás de cámaras</span>
+                        </div>
+                    </a>
+                    <!-- Discord -->
+                    <a href="#" class="red-item">
+                        <div class="red-icon">🎧</div>
+                        <div class="red-texto">
+                            <strong>Discord</strong>
+                            <span>Charla en vivo y revisión de proyectos</span>
+                        </div>
+                    </a>
+                    <!-- X (Twitter) -->
+                    <a href="#" class="red-item">
+                        <div class="red-icon">🐦</div>
+                        <div class="red-texto">
+                            <strong>X (Twitter)</strong>
+                            <span>Hablemos de hardware y edición</span>
+                        </div>
+                    </a>
+                    <!-- Correo Directo -->
+                    <a href="mailto:tu-correo@ejemplo.com" class="red-item">
+                        <div class="red-icon">✉️</div>
+                        <div class="red-texto">
+                            <strong>Correo Electrónico</strong>
+                            <span>Consultas formales y cotizaciones</span>
+                        </div>
+                    </a>
                 </div>
-                <div class="form-group">
-                    <label for="correo">Correo Electrónico</label>
-                    <input type="email" id="correo" class="form-control" placeholder="juan@ejemplo.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="mensaje">Detalles de tu proyecto de video</label>
-                    <textarea id="mensaje" rows="5" class="form-control" placeholder="Cuéntame sobre el tipo de edición que necesitas..." required></textarea>
-                </div>
-                <div style="text-align: center; margin-top: 30px;">
-                    <button type="submit" class="btn-glow">Enviar Mensaje</button>
-                </div>
-            </form>
+            </div>
+
+            <!-- Lado Derecho: Formulario Corregido -->
+            <div class="contacto-formulario">
+                <!-- Se añadió event.preventDefault() para que no colapse ni reinicie la página -->
+                <form onsubmit="event.preventDefault(); alert('¡Mensaje enviado con éxito! Me pondré en contacto contigo muy pronto.'); this.reset();">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Tu Nombre o Marca" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Tu Correo Electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="6" class="form-control" placeholder="Cuéntame sobre el tipo de edición que necesitas..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-glow" style="width: 100%;">Enviar Mensaje</button>
+                </form>
+            </div>
+
         </div>
     </main>
 
