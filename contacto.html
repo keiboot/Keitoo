@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Mi Portafolio</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Visual<span>Edit</span></div>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="proyectos.html">Proyectos</a>
+                <a href="sobremi.html">Sobre Mí</a>
+                <a href="contacto.html" class="active">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="titulo-seccion">Inicia un <span>Proyecto</span></h2>
+        
+        <div class="contact-card">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" class="form-control" placeholder="Ej. Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" class="form-control" placeholder="juan@ejemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Detalles de tu proyecto de video</label>
+                    <textarea id="mensaje" rows="5" class="form-control" placeholder="Cuéntame sobre el tipo de edición que necesitas..." required></textarea>
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button type="submit" class="btn-glow">Enviar Mensaje</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
