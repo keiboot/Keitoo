@@ -4,7 +4,7 @@
     --bg-tarjeta: #13131a;
     --texto-principal: #f5f5f7;
     --texto-secundario: #a0a0ab;
-    --color-neon: #fe007f; 
+    --color-neon: #fe0022; 
     --color-neon-alt: #9b51e0; 
     --brillo-neon: rgba(0, 242, 254, 0.4);
     --borde-redondeado-lg: 20px;
@@ -354,4 +354,123 @@ nav a:hover, nav a.active {
     .nav-container { flex-direction: column; gap: 15px; }
     nav a { margin: 0 10px; }
     .hero-section h1 { font-size: 2.5rem; }
+}
+
+/* --- NUEVOS AJUSTES DEL HERO Y VIDEO DE FONDO --- */
+.hero-video {
+    opacity: 100; /* Aumentamos la opacidad para que el video de fondo se vea claramente */
+    filter: brightness(0.6); /* Lo oscurecemos un poco para que el texto siga siendo legible */
+}
+
+.hero-overlay {
+    background: radial-gradient(circle at center, rgba(10, 10, 12, 0.4) 0%, var(--bg-principal) 90%);
+}
+
+.hero-video-embed {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16/9;
+    border-radius: var(--borde-redondeado-lg);
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1;
+    transition: var(--transicion-suave);
+}
+
+.hero-video-embed:hover {
+    box-shadow: 0 0 40px var(--brillo-neon);
+    border-color: var(--color-neon);
+}
+
+.hero-video-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* --- PIE DE PÁGINA UNIVERSAL (FOOTER) --- */
+.universal-footer {
+    background-color: #050505;
+    padding: 40px 20px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-socials a {
+    color: var(--texto-secundario);
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: var(--transicion-suave);
+}
+
+.footer-socials a:hover {
+    color: var(--color-neon);
+    transform: translateY(-3px) scale(1.1);
+    text-shadow: 0 0 10px var(--brillo-neon);
+}
+
+.footer-copy {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.footer-copy span {
+    color: var(--color-neon);
+    font-weight: bold;
+}
+
+/* --- SECCIÓN DE CLIENTES (INICIO) --- */
+.clientes-section {
+    margin-top: 60px;
+    margin-bottom: 80px;
+}
+
+.clientes-grid {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.cliente-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 90px;
+    background-color: var(--bg-tarjeta);
+    border-radius: var(--borde-redondeado-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-decoration: none;
+    color: var(--texto-secundario);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    transition: var(--transicion-suave);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Efecto glow al pasar el mouse por la tarjeta del cliente */
+.cliente-item:hover {
+    border-color: var(--color-neon);
+    color: var(--color-neon);
+    background-color: rgba(0, 242, 254, 0.05);
+    box-shadow: 0 0 20px var(--brillo-neon), 0 10px 20px rgba(0,0,0,0.5);
+    transform: translateY(-5px);
 }
