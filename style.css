@@ -184,9 +184,9 @@ nav a:hover, nav a.active {
 }
 
 /* Al pasar el cursor, el carrusel se pausa */
-.carousel-track:hover {
+/* .carousel-track:hover {
     animation-play-state: paused;
-}
+} */
 
 .testimonio-card {
     width: 320px;
@@ -262,36 +262,62 @@ nav a:hover, nav a.active {
 .video-info h3 { font-size: 1.1rem; margin-bottom: 5px; }
 
 /* PROYECTOS VERTICALES (SHORTS / TIKTOK) */
+/* =========================================
+   AJUSTE DE GRILLA PARA SHORTS / REELS
+========================================= */
 .shorts-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    max-width: 700px;
-    margin: 0 auto;
+    /* Obliga a tener exactamente 3 columnas del mismo tamaño */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px; /* Espaciado entre los videos */
+    max-width: 850px; /* ESTO HACE QUE SE VEAN MÁS PEQUEÑOS: limita el ancho total de la grilla */
+    margin: 0 auto; /* Centra la grilla en la página */
 }
 
 .short-card {
+    width: 100%;
+    aspect-ratio: 9/16; /* Mantiene la proporción perfecta de video vertical */
     background-color: var(--bg-tarjeta);
-    border-radius: var(--borde-redondeado-lg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--borde-redondeado-md);
     overflow: hidden;
-    aspect-ratio: 9/16;
     position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     transition: var(--transicion-suave);
-}
-
-.short-card:hover {
-    border-color: var(--color-neon-alt);
-    box-shadow: 0 0 25px rgba(155, 81, 224, 0.3);
-    transform: scale(1.02);
 }
 
 .short-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: var(--transicion-suave);
 }
 
+.short-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(254, 0, 0, 0.15);
+    border-color: var(--color-neon);
+}
+
+.short-card:hover img {
+    transform: scale(1.05);
+    filter: brightness(0.7); /* Oscurece un poco la imagen de fondo al pasar el mouse */
+}
+
+/* Responsivo: Para que no se vea aplastado en celulares */
+@media (max-width: 768px) {
+    .shorts-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    .shorts-grid {
+        grid-template-columns: 1fr; /* 1 columna en celulares pequeños */
+        max-width: 280px;
+    }
+}
 /* NUEVO DISEÑO DE CONTACTO */
 .contacto-wrapper {
     display: grid;
@@ -473,4 +499,519 @@ nav a:hover, nav a.active {
     background-color: rgba(0, 242, 254, 0.05);
     box-shadow: 0 0 20px var(--brillo-neon), 0 10px 20px rgba(0,0,0,0.5);
     transform: translateY(-5px);
+}
+
+
+
+
+/* 4V1 */       
+
+
+/* =========================================
+   NUEVO: FILTROS Y REPRODUCTOR (MODAL)
+==============================  =========== */
+
+/* 1. Filtros de Categoría */
+.filtros-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.btn-filtro {
+    background: transparent;
+    color: var(--texto-secundario);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicion-suave);
+}
+
+.btn-filtro:hover, .btn-filtro.activo {
+    background: var(--color-neon);
+    color: #000;
+    border-color: var(--color-neon);
+    box-shadow: 0 0 15px var(--brillo-neon);
+}
+
+/* 2. Ícono de Play al pasar el cursor */
+.video-card, .short-card {
+    cursor: pointer;
+    position: relative;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    font-size: 3.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    transition: var(--transicion-suave);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.video-thumbnail::after, .short-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: var(--transicion-suave);
+}
+
+.video-card:hover .video-thumbnail::after, .short-card:hover::after {
+    opacity: 1;
+}
+
+.video-card:hover .play-icon, .short-card:hover .play-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    color: var(--color-neon);
+    text-shadow: 0 0 20px var(--color-neon);
+}
+
+/* 3. Reproductor Flotante (Fondo desenfocado) */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Fondo oscuro */
+    backdrop-filter: blur(12px); /* Efecto desenfoque estilo Apple/Pro */
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.modal-overlay.activo {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    aspect-ratio: 16/9; /* Por defecto horizontal */
+    background: #000;
+    border-radius: var(--borde-redondeado-md);
+    box-shadow: 0 0 50px rgba(0,0,0,0.9), 0 0 20px var(--brillo-neon);
+    transform: scale(0.95) translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.modal-overlay.activo .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+/* Si el video es vertical (Short/Reel) cambiamos la forma */
+.modal-content.formato-vertical {
+    max-width: 400px;
+    aspect-ratio: 9/16;
+}
+
+.modal-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: var(--borde-redondeado-md);
+}
+
+.cerrar-modal {
+    position: absolute;
+    top: -45px;
+    right: 0;
+    color: #fff;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: var(--transicion-suave);
+    background: transparent;
+    border: none;
+}
+
+.cerrar-modal:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
+    text-shadow: 0 0 10px #ff0000;
+}
+
+
+/* =========================================
+   NUEVO: ESTILOS PARA SOBRE MÍ
+========================================= */
+
+/* Contadores / Stats */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 40px 0 60px 0;
+}
+
+.stat-item {
+    background: var(--bg-tarjeta);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--borde-redondeado-md);
+    padding: 30px 20px;
+    text-align: center;
+    transition: var(--transicion-suave);
+}
+
+.stat-item:hover {
+    border-color: var(--color-neon);
+    box-shadow: 0 0 20px var(--brillo-neon);
+    transform: translateY(-5px);
+}
+
+.stat-numero {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 0 15px var(--brillo-neon);
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: var(--texto-secundario);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Timeline / Flujo de Trabajo */
+.workflow-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 40px;
+    position: relative;
+}
+
+.workflow-step {
+    background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.00) 100%);
+    border-left: 3px solid var(--color-neon);
+    padding: 20px 25px;
+    border-radius: 0 var(--borde-redondeado-md) var(--borde-redondeado-md) 0;
+}
+
+.step-num {
+    color: var(--color-neon);
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.workflow-step h4 {
+    color: #fff;
+    font-size: 1.3rem;
+    margin: 5px 0 10px 0;
+}
+
+/* Cuadrícula de software */
+.software-flex {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.soft-badge {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+
+
+
+/* =========================================
+   PERFIL EXPERTO: SOBRE MÍ COMPLETO
+========================================= */
+
+/* Badge de Disponibilidad Activa */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 242, 254, 0.05);
+    border: 1px solid var(--color-neon);
+    padding: 6px 16px;
+    border-radius: 20px;
+    color: var(--color-neon);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.7);
+    animation: pulsoNeon 1.6s infinite;
+}
+
+@keyframes pulsoNeon {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(0, 242, 254, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+}
+
+/* Barras de Skills Avanzadas */
+.skill-bar-container {
+    margin-bottom: 20px;
+}
+
+.skill-bar-info {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.skill-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.skill-bar-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-neon), #0072ff);
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--brillo-neon);
+    width: 0; /* Controlado dinámicamente */
+    transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
+}
+
+/* Tarjetas de Garantía */
+.garantias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.garantia-card {
+    background: linear-gradient(145deg, #0d0d11 0%, #050507 100%);
+    border: 1px solid rgba(255,255,255,0.03);
+    padding: 25px;
+    border-radius: var(--borde-redondeado-md);
+    transition: var(--transicion-suave);
+}
+
+.garantia-card:hover {
+    border-color: rgba(0, 242, 254, 0.2);
+    transform: scale(1.02);
+}
+
+.garantia-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+/* Preguntas Frecuentes (FAQ Accordion) */
+.faq-section {
+    margin-top: 80px;
+}
+
+.faq-item {
+    background: var(--bg-tarjeta);
+    border: 1px solid rgba(255,255,255,0.03);
+    border-radius: var(--borde-redondeado-md);
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: var(--transicion-suave);
+}
+
+.faq-question {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 20px;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    color: var(--texto-secundario);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0 20px;
+}
+
+.faq-item.abierto {
+    border-color: rgba(0, 242, 254, 0.2);
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.faq-item.abierto .faq-answer {
+    padding-bottom: 20px;
+}
+
+.faq-toggle-icon {
+    font-size: 1.2rem;
+    color: var(--color-neon);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.abierto .faq-toggle-icon {
+    transform: rotate(45deg);
+}
+
+
+
+
+/* =========================================
+   NUEVO: VIDEO DE FONDO Y CARRUSEL DE CREADORES
+========================================= */
+
+/* Video de fondo para Sobre Mí */
+.sobremi-bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    opacity: 0.3; /* Opacidad baja para que parezca de fondo */
+    filter: brightness(0.5);
+}
+
+.sobremi-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(5,5,5,0.6) 0%, rgba(5,5,5,0.95) 100%);
+    z-index: -1;
+}
+
+/* Carrusel de Creadores / Clientes */
+.creators-carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    position: relative;
+    /* Sombras a los lados para que el carrusel desaparezca suavemente */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.creators-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: scrollCreators 25s linear infinite;
+}
+
+@keyframes scrollCreators {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 15px)); }
+}
+
+.creator-card {
+    background: rgba(15, 15, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: var(--borde-redondeado-md);
+    padding: 30px 20px;
+    text-align: center;
+    width: 240px;
+    flex-shrink: 0;
+    transition: var(--transicion-suave);
+}
+
+.creator-card:hover {
+    border-color: var(--color-neon);
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+    transform: translateY(-5px);
+}
+
+.creator-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    border: 3px solid var(--color-neon);
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+.creator-name {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.creator-platforms {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.creator-platforms span {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--texto-secundario);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.creator-views-label {
+    color: var(--texto-secundario);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+}
+
+.creator-views {
+    color: var(--color-neon);
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-shadow: 0 0 15px var(--brillo-neon);
 }
